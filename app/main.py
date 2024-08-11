@@ -85,4 +85,3 @@ def create_posts( post : Post):
 # def create_posts(payload: dict = Body(...)):
 #     print(payload)
 #     return {"newpost": f"title {payload['title']} content {payload['content']}"}
-
