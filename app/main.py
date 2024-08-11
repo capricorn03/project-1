@@ -13,7 +13,7 @@ class Post(BaseModel):
     content:str
     published: bool = True
     rating: Optional[int] = None
-
+ 
 while True:    
     try:
         connection = psycopg2.connect(host='localhost', database='fastapi', 
@@ -27,7 +27,7 @@ while True:
         print("Connection to the database failed")
         print(f"Error: {e}")
         time.sleep(2)
-
+    
 
 
 
@@ -49,7 +49,7 @@ def find_post(id):
     for p in my_posts:
        if p['id'] == id:
           return p
-
+ 
 
 @app.get("/")
 def root():
@@ -67,7 +67,7 @@ def latest_post():
 
  #post id should be converted into integer as the usrl
  #prams always comes as a string 
-
+ 
 @app.get("/posts/{id}")
 def get_post(id : int, response: Response):    
     post = find_post(id)    
@@ -78,27 +78,24 @@ def get_post(id : int, response: Response):
         # return {"message": f"post with id:{id} was not found"}
     print(post)
     return {"post details": post}
-
+    
 
 
 @app.get("/posts")
 def get_posts():
-    cursor.execute("""SELECT * FROM products""")
-    posts = cursor.fetchall()
-    print(posts)
-    return {"data": posts}
+    return {"data": my_posts}
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)  
 def create_posts( post : Post):
-
+    
     post_dic = post.model_dump()
     post_dic['id'] = randrange(0, 1000000)
     my_posts.append(post_dic)
-
+    
     print(post)
     print(post.model_dump()) # equals to post.dict() to print post body in dictionary formate
-
+    
     return {"data": post_dic}
 
 
@@ -107,3 +104,4 @@ def create_posts( post : Post):
 # def create_posts(payload: dict = Body(...)):
 #     print(payload)
 #     return {"newpost": f"title {payload['title']} content {payload['content']}"}
+
