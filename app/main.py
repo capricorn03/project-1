@@ -83,10 +83,7 @@ def get_post(id : int, response: Response):
 
 @app.get("/posts")
 def get_posts():
-    cursor.execute("""SELECT * FROM products""")
-    posts = cursor.fetchall()
-    print(posts)
-    return {"data": posts}
+    return {"data": my_posts}
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)  
