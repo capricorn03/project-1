@@ -1,4 +1,4 @@
-<!-- pip install "fastapi[standard]" -->
+<!-- pip install "fastapi[all]" -->
 
 ##run
 <!--- use these cmd to run the fatsapi --->

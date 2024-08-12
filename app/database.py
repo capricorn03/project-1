@@ -9,7 +9,7 @@ import os
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_NAME = os.getenv("DB_NAME", "fastapi")
 DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "root@localhost")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "root")
 
 # Construct the SQLAlchemy URL
 DATABASE_URL = URL.create(
@@ -37,3 +37,26 @@ def get_db():
         yield db
     finally:
         db.close()
+        
+        
+        
+        
+#this not needed as we are using the sqlalchemy to connect to the database
+# but if you are using raw sql command the we need have use this code
+
+# import psycopg2
+# from psycopg2.extras import RealDictCursor
+
+# while True:    
+#     try:
+#         connection = psycopg2.connect(host='localhost', database='fastapi', 
+#                                     user='postgres', password='root@localhost',
+#                                     cursor_factory=RealDictCursor)
+#         cursor = connection.cursor()
+#         print("connected to the database")
+#         break
+
+#     except Exception as e:
+#         print("Connection to the database failed")
+#         print(f"Error: {e}")
+#         time.sleep(2)        
