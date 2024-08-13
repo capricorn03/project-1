@@ -40,4 +40,6 @@ async def root():
     return {"message": "Welcome to the Social Media App API!"}
 
 
-   
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app)
