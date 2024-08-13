@@ -2,12 +2,10 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    SQLALCHEMY_DATABASE_URI: str = (
-        "postgresql://user:password@host:port/database"
-    )
+    DATABASE_URL: str
 
     class Config:
-        env_file = ".env"
+        env_file = "../.env"
 
 
 settings = Settings()
